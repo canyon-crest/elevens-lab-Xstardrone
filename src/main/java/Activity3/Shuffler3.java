@@ -1,4 +1,9 @@
 package Activity3;
+
+import java.util.Arrays;
+
+import Activity1.Card1;
+
 /**
  * This class provides a convenient way to test shuffling methods.
  */
@@ -52,6 +57,20 @@ public class Shuffler3 {
 	 */
 	public static void perfectShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		int[] shuffled = new int[values.length];
+		int k = 0;
+		for (int j = 0; j < values.length/2; j++) {
+			shuffled[k] = values[j];
+			k += 2;
+		}
+		k = 1;
+		for (int j = values.length/2; j < values.length; j++) {
+			shuffled[k] = values[j];
+			k += 2;
+		}
+		for (int i = 0; i < values.length; i++) {
+			values[i] = shuffled[i];
+		}
 	}
 
 	/**
@@ -67,5 +86,33 @@ public class Shuffler3 {
 	 */
 	public static void selectionShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		for (int k = values.length - 1; k > 0; k--) {
+			int r = (int) (Math.random() * (k + 1));
+			int temp = values[r];
+			values[r] = values[k];
+			values[k] = temp;
+		}
+	}
+
+	public static void flip() {
+		if ((int) (Math.random() * 3) > 1) {
+			System.out.println("HEADS");
+		} else {
+			System.out.println("TAILS");
+		}
+	}
+
+	public static boolean arePermutations(int[] arr1, int[] arr2) {
+		if (arr1.length != arr2.length) {
+			return false;
+		} else if (arr1.length == 0 && arr2.length == 0) {
+			return true;
+		} else {
+			int[] tempArr1 = Arrays.copyOf(arr1, arr1.length);
+			int[] tempArr2 = Arrays.copyOf(arr2, arr2.length);
+			Arrays.sort(tempArr1);
+			Arrays.sort(tempArr2);
+			return (tempArr1.equals(tempArr2));
+		}
 	}
 }
