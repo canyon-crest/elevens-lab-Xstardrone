@@ -109,13 +109,20 @@ public class ElevensBoard11 extends Board11 {
 	private ArrayList<Integer> findJQK(List<Integer> selectedCards) {
 		/* *** TO BE CHANGED INTO findJQK IN ACTIVITY 11 *** */
 		ArrayList<Integer> indices = new ArrayList<Integer>();
+		boolean foundJack = false;
+		boolean foundQueen = false;
+		boolean foundKing = false;
+
 		for (Integer kObj : selectedCards) {
 			int k = kObj.intValue();
-			if (cardAt(k).rank().equals("jack")) {
+			if (cardAt(k).rank().equals("jack") && !foundJack) {
+				foundJack = true;
 				indices.add(k);
-			} else if (cardAt(k).rank().equals("queen")) {
+			} else if (cardAt(k).rank().equals("queen") && !foundQueen) {
+				foundQueen = true;
 				indices.add(k);
-			} else if (cardAt(k).rank().equals("king")) {
+			} else if (cardAt(k).rank().equals("king") && !foundKing) {
+				foundKing = true;
 				indices.add(k);
 			}
 		}
